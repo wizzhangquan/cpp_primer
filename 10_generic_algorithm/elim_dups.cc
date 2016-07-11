@@ -6,6 +6,11 @@
 
 using namespace std;
 
+/*
+ * 重排并删除重复单词
+ */
+
+
 void print_vector(vector<string>::const_iterator begin, vector<string>::const_iterator end) {
     for (auto iter = begin; iter != end; ++iter)
         cout << *iter << "  ";
