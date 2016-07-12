@@ -59,6 +59,10 @@ void bigges(vector<string> &words,
 
 void read_from_file(const char *filename, vector<string> &words) {
     ifstream fin (filename);
+    if (!fin.is_open()) {
+        cout << "Error opening file" << endl;
+        exit(1);
+    }
     string w;
     while (fin >> w)
         words.push_back(w);
