@@ -8,6 +8,8 @@
 /*
  * biggest: 求大于等于一个给定长度的单词有多少。
  * 并使程序只打印大于等于给定长度的单词 
+ * bigges_by_count_if同样实现了bigges，但是使用了count_if,
+ * 并在count_if中就将其输出了。
  */
 
 using namespace std;
@@ -57,6 +59,26 @@ void bigges(vector<string> &words,
     cout << endl;
 }
 
+void bigges_by_count_if(vector<string> &words,
+                        vector<string>::size_type sz) {
+    elim_dups(words);
+    show_strs(words, "elim_dups");
+    
+    cout.width(TITLE_WIDTH);
+    cout << "count_if " << " : ";
+    int enough_cnt = count_if(words.begin(), words.end(),
+                        [=](const string &str) -> bool 
+                           { if (str.size() >= sz) {
+                                cout << str << " "; 
+                                return true;
+                             }
+                             else return false; } );
+
+    cout << endl;
+    cout.width(TITLE_WIDTH);
+    cout << "enough count" << " : " << enough_cnt << endl;
+}
+
 void read_from_file(const char *filename, vector<string> &words) {
     ifstream fin (filename);
     if (!fin.is_open()) {
@@ -70,14 +92,17 @@ void read_from_file(const char *filename, vector<string> &words) {
 }
 
 int main(int argc, char *argv[]) {
-    if (argc != 2) {
-        cout << "usage: ./a.out words.txt" << endl;
+    if (argc != 3) {
+        cout << "usage: ./a.out words.txt 1/2" << endl;
         exit(1);
     }
 
     vector<string> words;
     read_from_file(argv[1], words);
     show_strs(words, "read_from_file"); 
-    bigges(words, 4);
+    if (atoi(argv[2]) == 1)
+        bigges(words, 4);
+    else
+        bigges_by_count_if(words, 4);
     return 0;
 }
