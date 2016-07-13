@@ -7,12 +7,18 @@
 
 /*
  * 统计出现的单词数目
+ *
+ * 这里我使用了istream_iterator(iostream迭代器)=> *fin_iter++
+ * 并使用了set来排除常用的单词。
  */
 
 using namespace std;
 
-void word_cnt(const char *filename, map<string, size_t> &words) {
-    fstream fin(filename);
+set<string> exclude = {"the", "but", "and", "or", "an", "a", "is", "are"
+                       "The", "But", "And", "Or", "An", "A", "Is", "are"};
+
+void word_cnt(const char *filename, map<string, size_t> &words, set<string> &excl = exclude) {
+    fstream fin(filename, ifstream::in);
     if (!fin.is_open()) {
         cout << "Error open file" << endl;
         exit(1);
@@ -20,7 +26,10 @@ void word_cnt(const char *filename, map<string, size_t> &words) {
     
     istream_iterator<string> fin_iter(fin), eof;
     while (fin_iter != eof) {
-        ++words.insert({*fin_iter++, 0}).first->second;
+        if (excl.find(*fin_iter) == excl.end())
+            ++words.insert({*fin_iter++, 0}).first->second;
+        else
+            ++fin_iter;
     }
     fin.close();
 }
