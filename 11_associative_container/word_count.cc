@@ -26,10 +26,15 @@ void word_cnt(const char *filename, map<string, size_t> &words, set<string> &exc
     
     istream_iterator<string> fin_iter(fin), eof;
     while (fin_iter != eof) {
-        if (excl.find(*fin_iter) == excl.end())
+        /*if (excl.find(*fin_iter) == excl.end())
             ++words.insert({*fin_iter++, 0}).first->second;
         else
             ++fin_iter;
+        */
+        string w;
+        w = *fin_iter++;
+        if (excl.find(w) == excl.end())
+            ++words[w];                        //使用下标显然比insert更加的简洁
     }
     fin.close();
 }
