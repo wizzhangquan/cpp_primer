@@ -38,7 +38,7 @@ const string &trans_word(const map<string, string> &trans_map, const string &wor
         return word;
     else
         return iter_find->second;
-        //return trans_map[word];
+        //return trans_map[word];  因为这里的trans_map是const，如果使用[]/at会导致map改变，故而只能使用find
 }
 
 void print_eassy_transform(const char *eassy_name, const char *transfile_name) {
