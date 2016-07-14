@@ -90,7 +90,7 @@ Text_query::query_every_line(Text_lines &filelines, const string &word) {
         if (cnt == 0) 
             continue;
         else
-            occur_nums_of_line.insert({line_no, cnt});
+            occur_nums_of_line.insert({line_no, cnt}); //map.insert(pair)
     }
     return occur_nums_of_line;
 }
@@ -107,7 +107,7 @@ Text_query::format_query_result(Text_lines &filelines, const string &word) {
         //cout << "(line " << line_cnt.first << ") "
         //     << filelines.get_line(line_cnt.first) << endl;
     }
-    return ostr.str();
+    return ostr.str();  //ostringstream和istringstream不同，不需要用字符串初始化，需要转换为string时使用str()
 }
 int main(int argc, char *argv[]) {
     if (argc != 3)
