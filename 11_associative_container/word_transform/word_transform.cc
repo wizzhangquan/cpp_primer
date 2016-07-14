@@ -19,7 +19,7 @@ const map<string, string> build_addreviation_map(ifstream &map_file) {
     string value;
     while (map_file >> key && getline(map_file, value)) {
         if (value.size() > 1)
-            trans_map[key] = value.substr(1);
+            trans_map[key] = value.substr(1); //跳过前导空格
         else
             throw runtime_error("no rule for " + key);
     }
@@ -54,7 +54,7 @@ void print_eassy_transform(const char *eassy_name, const char *transfile_name) {
     while (getline(eassy, line)) {
         istringstream istr(line);
         string word;
-        while (istr >> word)
+        while (istr >> word) //这里是stringstream，故而跳过了前导空格
             cout << trans_word(trans_map, word) << " " ;
         cout << endl;
     } 
