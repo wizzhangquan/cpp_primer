@@ -7,7 +7,7 @@
 #include <set>
 #include <string>
 
-//class QueryResult;
+class QueryResult;
 
 class TextQuery {
 public:
@@ -16,7 +16,7 @@ public:
              std::set<line_no>* > word_map_type;
 
     TextQuery(std::ifstream &);
-    
+    QueryResult query(const std::string &sought) const;
 private:
     void insert_word_a_line(const std::string &line, 
                             line_no n);
@@ -25,19 +25,18 @@ private:
     word_map_type *word_map;
 };
 
-/*usage test
+class QueryResult {
+public:
+    friend std::ostream &print(std::ostream &, const QueryResult &);
+    QueryResult(const std::string &sought, std::vector<std::string> *f,
+                std::set<TextQuery::line_no> *l) :
+                sought_word(sought), file(f), lines(l) { }
+private:
+    std::string sought_word;
+    std::vector<std::string> *file;
+    std::set<TextQuery::line_no> *lines;
+};
 
-void run_queries(ifstream &infile) {
-    TextQuery tq(infile);
-    while (true) {
-        cout << "enter word to look for, or q! to quit: ";
-        string query_word;
-        if ((cin >> query_word) || s == "q!") break;
-        
-        print(cout, tq.query(s)) << endl;
-       
-    }
-}
-*/
+std::ostream &print(std::ostream &, const QueryResult &);
 
 #endif
