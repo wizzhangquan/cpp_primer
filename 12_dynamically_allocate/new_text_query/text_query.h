@@ -16,6 +16,7 @@ public:
              std::set<line_no>* > word_map_type;
 
     TextQuery(std::ifstream &);
+    ~TextQuery();
     QueryResult query(const std::string &sought) const;
 private:
     void insert_word_a_line(const std::string &line, 

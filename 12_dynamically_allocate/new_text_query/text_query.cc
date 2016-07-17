@@ -31,6 +31,18 @@ TextQuery::TextQuery(ifstream &infile) {
     } 
 }
 
+TextQuery::~TextQuery() {
+    file->clear();
+    delete file;
+    
+    for (auto i = word_map->begin();
+        i != word_map->end(); ) {
+        delete i->second;
+        i = word_map->erase(i);
+    }
+    cout << "~TextQuery end" << endl;
+}
+
 void
 TextQuery::insert_word_a_line(const string &line, line_no n) {
     istringstream istr(line);
