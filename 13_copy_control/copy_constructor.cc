@@ -34,10 +34,11 @@ Point foo_bar(Point arg) {
 
 int main(void) {
     Point testp(3, 4);
-    //const Point &retp = foo_bar(testp);      /* 这里使用const & 就可以成功？而非const引用就不可以？ : 个人猜测是因为没有源对象 或者说是看不到原对象因为毕竟是返回值 */
+    //const Point &retp = foo_bar(testp);      /* 这里使用const & 就可以成功？而非const引用就不可以？ */
+                                               /*: 个人猜测是因为没有源对象 或者说是看不到原对象因为毕竟是返回值 */
     //Point retp = foo_bar(testp);             /* 这里在函数返回的时候调用了拷贝构造函数，但将返回值传入对象中却不调用拷贝构造函数呢 */
-                                               /*  个人感觉是编译器的原因：因为函数返回的对象如果再次使用拷贝构造的话，返回的对象就永远不会被使用，这样浪费空间时间。
-                                                   于是就直接将其地址给了返回对象。 */
+                                               /*  个人感觉是编译器的原因：因为函数返回的对象如果再次使用拷贝构造的话，返回的对象就
+                                                *  永远不会被使用， 这样浪费空间时间。 于是就直接将其地址给了返回对象。 */
     //Point *retpp = NULL;
     //*retpp = foo_bar(testp);
     //retp.print();
