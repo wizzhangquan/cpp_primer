@@ -1,22 +1,29 @@
 #include <iostream>
 #include <string>
+#include <sstream>
 
-using std::cin;
-using std::cout;
-using std::endl;
-using std::string;
-
+using namespace std;
+/*
+ * 行为像值的类 ： 即拷贝/赋值都是新的string，两个对象指向的不会是同一个string
+ */
 class HasPtr {
 public:
     HasPtr(const string &s = string()) : 
-        ps (new string(s)), i (0) {}
+        ps (new string(s)), i (0) 
+        { cout << "HasPtr init s:" << print_value() << endl; }
 
     HasPtr(const HasPtr &p) :
-        ps (new string(*p.ps)), i (p.i) {}
+        ps (new string(*p.ps)), i (p.i) 
+        { cout << "HasPtr copy ctr " << print_value() << endl;}
     
     HasPtr &operator=(const HasPtr &);
-    ~HasPtr() { delete ps; };
+    ~HasPtr() { delete ps; }
 private:
+    const string print_value() {
+        ostringstream ostr;
+        ostr << "s:" << *ps << " i:" << i;
+        return ostr.str();
+    }
     string *ps;
     int i;
 };
