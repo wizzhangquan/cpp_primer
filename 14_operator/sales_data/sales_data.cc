@@ -15,6 +15,13 @@ operator>>(istream &is, SalesData &item) {
     return is;
 }
 
+ostream &
+operator<<(ostream &os, const SalesData &item) {
+    os << item.bookNo << " " << item.units_sold << " "
+       << item.revenue << " " << item.avg_price();
+    return os;
+}
+
 SalesData::SalesData(istream &is) : SalesData() {
     is >> *this;
 }

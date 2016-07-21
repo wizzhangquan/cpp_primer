@@ -6,10 +6,11 @@
 
 using std::string;
 using std::istream;
+using std::ostream;
 
 class SalesData {
-friend istream & operator>>(istream&, SalesData &item);
-
+friend istream & operator>>(istream&, SalesData &);
+friend ostream & operator<<(ostream&, const SalesData &);
 public:
     SalesData(const string &s, unsigned int n, double p) :
         bookNo(s), units_sold(n), revenue(n*p) { }
