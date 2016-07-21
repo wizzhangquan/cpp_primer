@@ -5,9 +5,10 @@
 #include <memory>
 #include <utility>
 
-using namespace std;
-//using std::string;
-//using std::pair;
+//using namespace std;
+using std::string;
+using std::pair;
+using std::allocator;
 
 class StrVec {
 public:
@@ -23,11 +24,11 @@ public:
     string *end() const { return first_free; };
 
 private:
-    static allocator<string>alloc;
+    static allocator< string > alloc;
     void chk_n_alloc() 
         { if (size() == capacity()) reallocate(); }
-    pair<string* , string*>
-        alloc_n_copy(const string *, const string *);
+    //pair<string* , string*>
+    //    alloc_n_copy(const string *, const string *);
     void free();
     void reallocate();           //重分内存
     string *element;

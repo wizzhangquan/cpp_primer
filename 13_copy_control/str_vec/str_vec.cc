@@ -1,6 +1,7 @@
 #include <memory>
 #include <iostream>
 #include <string>
+#include <utility>
 #include "str_vec.h"
 
 using namespace std;
@@ -39,6 +40,7 @@ StrVec::reallocate(void) {
 }
 
 int main(void) {
+/*
     StrVec sv;
     
     sv.push_back("hello");
@@ -48,5 +50,6 @@ int main(void) {
     
     for (string* s = sv.begin(); s != sv.end(); ++s)
         cout << s << endl;    
+*/
     return 0;
 }
