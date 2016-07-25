@@ -23,5 +23,6 @@ int main() {
     q.virtual_print();
     bq.virtual_print();
     cit_bq.virtual_print();
+
     return 0;
 }
