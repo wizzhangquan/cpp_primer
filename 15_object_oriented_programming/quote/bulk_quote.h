@@ -21,6 +21,12 @@ public:
 
     double net_price(size_t) const override; //c++11
     //virtual double net_price(size_t) const; //c++98
+
+    const string print(void) const { return "print Bulk_quote"; }
+
+    void virtual_print(void) const override 
+    //c++11这里的override只是显著标志其改写基类的虚函数而已，不加也是可以的 
+        { cout << "virtual_print: Bulk_quote" << endl;}
     
 private:
     size_t min_qty = 0;
