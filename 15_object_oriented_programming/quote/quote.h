@@ -8,8 +8,8 @@ using std::size_t;
 
 class Quote {
 public:
-    //Quote() { }; //c++98
-    Quote() = default;  //c++11
+    Quote() { }; //c++98
+    //Quote() = default;  //c++11
     Quote(const string &book, double sales_price):
         bookNo(book), price(sales_price) { }
     
@@ -17,8 +17,8 @@ public:
 
     virtual double net_price(size_t n) const
         { return n*price; }
-    //virtual ~Quote() { }; //c++98
-    virtual ~Quote() = default; //c++11
+    virtual ~Quote() { }; //c++98
+    //virtual ~Quote() = default; //c++11
 private:
     string bookNo;
 protected:

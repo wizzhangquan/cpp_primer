@@ -9,12 +9,14 @@ using std::size_t;
 
 class Bulk_quote : public Quote {
 public:
-    Bulk_quote() = default;
+    Bulk_quote() = default; //c++11
+    //Bulk_quote() { } //c++98
     Bulk_quote(const string &book, double sales_price,
         size_t qty, double disc) :
         Quote(book, sales_price), min_qty(qty), discount(disc) { }
 
-    double net_price(size_t) const override;
+    double net_price(size_t) const override; //c++11
+    //virtual double net_price(size_t) const; //c++98
 
 private:
     size_t min_qty = 0;
