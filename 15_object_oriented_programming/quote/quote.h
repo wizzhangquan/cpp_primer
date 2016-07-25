@@ -2,12 +2,15 @@
 #define _QUOTE_H__
 
 #include <string>
+#include <iostream>
 
 using std::string;
 using std::size_t;
+using std::ostream;
 
 class Quote {
 public:
+    friend ostream &operator<<(ostream &, const Quote &);
     Quote() { }; //c++98
     //Quote() = default;  //c++11
     Quote(const string &book, double sales_price):
@@ -19,10 +22,18 @@ public:
         { return n*price; }
     virtual ~Quote() { }; //c++98
     //virtual ~Quote() = default; //c++11
+
 private:
     string bookNo;
 protected:
-    double price ;
+    double price = 0;
 };
+
+ostream &
+operator<<(ostream &os, const Quote &q) {
+    os << "Quote book:" << q.bookNo 
+       << " price:" << q.price;
+    return os;
+}
 
 #endif
