@@ -35,8 +35,10 @@ private:
 
 ostream &
 operator<<(ostream &os, const Bulk_quote &bq) {
-    os << "Bulk_quote book:" << bq.isbn()
-       << " price:" << bq.price;
+    os << "Bulk_quote book:" << bq.isbn()     //派生类无法访问基类的private
+       << " price:" << bq.price;              
+        //派生类的成员或友元只能通过派生类对象来访问基类的protected.
+        //派生类对于一个基类对象中protected成员没有任何访问特权
     return os;
 }
 
