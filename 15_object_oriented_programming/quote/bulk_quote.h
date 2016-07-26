@@ -14,13 +14,13 @@ public:
     friend ostream& operator<<(ostream &, const Bulk_quote&);
 
     Bulk_quote() = default; //c++11
-    //Bulk_quote() { } //c++98
+    //Bulk_quote() { min_qty = 0; discount = 0.0; } //c++03
     Bulk_quote(const string &book, double sales_price,
         size_t qty, double disc) :
         Quote(book, sales_price), min_qty(qty), discount(disc) { }
 
     double net_price(size_t) const override; //c++11
-    //virtual double net_price(size_t) const; //c++98
+    //virtual double net_price(size_t) const; //c++03
 
     const string print(void) const { return "print Bulk_quote"; }
 
