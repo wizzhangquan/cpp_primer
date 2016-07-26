@@ -22,7 +22,7 @@ public:
     void fcn() { cout << "D2's fcn(void)" << endl; }
 
     void fcn(int i = 0) { cout << "D2's fcn(int)" << endl; }
-
+    //当调用fcn()时，默认参数显然比上面的函数优先级低
     void f2() { cout << "D2's f2" << endl; }
 };
 
