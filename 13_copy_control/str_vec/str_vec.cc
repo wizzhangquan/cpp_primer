@@ -27,6 +27,12 @@ StrVec::operator=(const StrVec &rhs) {
     return *this;
 }
 
+StrVec::StrVec(StrVec &&s) noexcept
+    : elements(s.elements), first_free(s.first_free)
+      ,cap(s.cap) {
+    s.elements = s.first_free = s.cap = nullptr;
+}
+
 void
 StrVec::push_back(const string &str) {
     chk_n_allocate();

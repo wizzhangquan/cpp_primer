@@ -21,6 +21,7 @@ public:
 
     StrVec(const StrVec &);
     StrVec &operator=(const StrVec &);
+    StrVec(StrVec &&) noexcept;
     ~StrVec() { free(); }
 
     void push_back(const string &);
