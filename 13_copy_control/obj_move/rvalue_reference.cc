@@ -1,4 +1,5 @@
 #include <iostream>
+#include <utility>
 
 //complier by c++11: g++ -std=c++11
 //本代码为了说明右值引用 & 左值引用
@@ -18,5 +19,8 @@ int main() {
     int &&rr2 = 2*i;
 
     //int &&rr3 = rr2; //ERROR: 变量表达式都是左值
+    int &&rr3 = std::move(rr2);//使用move来获得绑定到左值上的右值引用
+    //move调用告诉编译器：我们有一个左值，但我们希望像一个右值一样处理它
+    //我们必须认识到调用了move之后，除了对rr2赋值或销毁它外，我们将不再使用它
     return 0;
 }
