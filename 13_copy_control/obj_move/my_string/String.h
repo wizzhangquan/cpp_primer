@@ -19,11 +19,16 @@ public:
     
     String(const String &);
 
+    String(String &&) noexcept;
+
     String & operator=(const String &);
 
     ~String();
 
-    const char *c_str() const { return elements; }
+    const char *c_str() const { 
+        if (elements) return elements; 
+        else return "0"; //if elements is NULL, cout will failed
+    }
     char *begin() const { return elements; }
     const char *cbegin() const { return (const char*)elements; }
 

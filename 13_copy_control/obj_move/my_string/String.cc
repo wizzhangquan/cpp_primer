@@ -55,6 +55,13 @@ String::String(const String &str) {
          << elements << endl;
 }
 
+String::String(String &&s) noexcept
+    : elements(s.elements) {
+    s.elements = nullptr;
+    cout << "move constructor : " 
+         << c_str() << endl;
+}
+
 String &
 String::operator=(const String &str) {//use const String str can ok
     char *newdata = reallocator(str.cbegin()); 
@@ -68,6 +75,6 @@ String::operator=(const String &str) {//use const String str can ok
 
 String::~String() {
     cout << "destructor : "
-         << elements << endl;
+         << c_str() << endl;
     destroy();
 }
