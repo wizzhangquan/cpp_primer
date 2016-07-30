@@ -31,6 +31,7 @@ StrVec::StrVec(StrVec &&s) noexcept
     : elements(s.elements), first_free(s.first_free)
       ,cap(s.cap) {
     s.elements = s.first_free = s.cap = nullptr;
+    cout << "move constructor" << endl;
 }
 
 void
