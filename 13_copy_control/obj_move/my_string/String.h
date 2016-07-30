@@ -23,12 +23,17 @@ public:
 
     ~String();
 
+    const char *c_str() const { return elements; }
     char *begin() const { return elements; }
     const char *cbegin() const { return (const char*)elements; }
 
     size_t size() const {
         if (elements) return strlen(elements); 
         else return 0;
+    }
+
+    size_t length() const {
+        return size() - 1;
     }
 
 private:
@@ -41,7 +46,6 @@ private:
         alloc_n_copy(const char*, const char*);   
 
     char *elements;
-    //char *free;
 
     static allocator<char> alloc;
 };

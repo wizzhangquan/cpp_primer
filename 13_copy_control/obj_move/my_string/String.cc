@@ -2,6 +2,7 @@
 #include <memory>
 #include <utility>
 #include <cstring>
+#include <algorithm>
 #include "String.h"
 
 using namespace std;
@@ -18,7 +19,7 @@ String::alloc_n_copy(const char *b, const char *e) {
 char *
 String::reallocator(const char *cstr) {
     char *e = const_cast<char*>(cstr);
-    while(*e) ++e;
+    while(*e) ++e; //这里*e = NULL
     pair<char*, char*> newdata = 
         alloc_n_copy(cstr, ++e); 
     //这里必须++e,因为alloc_n_copy的e必须为指定范围的最后一个指针
@@ -29,7 +30,9 @@ void
 String::destroy() {
     const size_t sz = size();
     if (sz) {
-        alloc.destroy(elements);
+        //alloc.destroy(elements);这里必须每一个元素都destory
+        for_each(elements, elements+sz, 
+            [this] (char &a) {alloc.destroy(&a);});
         alloc.deallocate(elements, sz);
     }
 }
