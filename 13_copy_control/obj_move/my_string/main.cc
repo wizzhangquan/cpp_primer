@@ -18,7 +18,7 @@ String baz()
   return ret;
 }
  
-
+/*
 int main()
 {
   String s0;
@@ -39,10 +39,25 @@ int main()
   svec.push_back(baz());
   svec.push_back("good job");
 }
+*/
 
-/*
 int main() {
-    String s0;
+    //test vector.push_back
+    vector<String> svec;
+    
+    String s0= "hello0";
+    String s1= "hello1";
+    String s2= "hello2";
+    String s3= "hello3";
+    String s4= "hello4";
+    String s5= "hello5";
+
+    svec.push_back(s0);
+    svec.push_back(s1);
+    svec.push_back(s2);
+    svec.push_back(s3);
+    svec.push_back(s4);
+    svec.push_back(s5);
     return 0;
 }
-*/
+
