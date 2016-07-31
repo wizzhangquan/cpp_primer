@@ -52,6 +52,8 @@ int main() {
     String s4= "hello4";
     String s5= "hello5";
 
+    cout << s0.c_str() << endl;
+
     svec.push_back(s0);
     svec.push_back(s1);
     svec.push_back(s2);
