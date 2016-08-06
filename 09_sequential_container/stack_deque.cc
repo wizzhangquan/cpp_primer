@@ -27,6 +27,6 @@ int main() {
     }
 
     cout << "now stack is empty, now we try top: ";
-    //cout << stk.top() << endl;  //it is will core dump
+    //cout << stk.top() << endl;  //it is will segment fault 
     return 0;
 }
