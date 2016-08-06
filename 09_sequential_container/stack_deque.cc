@@ -25,5 +25,8 @@ int main() {
              << stk.top() << endl;
         stk.pop(); //pop's return is void
     }
+
+    cout << "now stack is empty, now we try top: ";
+    //cout << stk.top() << endl;  //it is will core dump
     return 0;
 }
