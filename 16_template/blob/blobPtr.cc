@@ -30,6 +30,15 @@ BlobPtr<T>& BlobPtr<T>::operator--() {
     return *this;
 }
 
+template <typename T>
+BlobPtr<T>& BlobPtr<T>::operator--(int) {
+    BlobPtr ret = *this;
+    //这里是在类模板作用域内，
+    //所以可以直接使用模板名不需要加上T
+    ++*this;
+    return ret;
+}
+
 int main() {
     return 0;
 }

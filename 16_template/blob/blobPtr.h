@@ -21,6 +21,7 @@ public:
     //所以这里可以不写T
     BlobPtr& operator++(); //前置运算符
     BlobPtr& operator--();
+    BlobPtr& operator++(int);
 
 private:
     std::shared_ptr<std::vector<T>>
