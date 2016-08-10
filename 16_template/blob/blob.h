@@ -5,7 +5,10 @@
 #include <vector>
 #include <initializer_list>
 
+template <typename T> class BlobPtr;
+
 template <typename T> class Blob {
+    friend class BlobPtr<T>;
 public:
     typedef typename std::vector<T>::size_type size_type;
 
