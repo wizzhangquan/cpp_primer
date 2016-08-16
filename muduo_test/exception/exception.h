@@ -25,7 +25,7 @@ public:
 
     }
 
-    const char *what() const throw(){
+    const char *what() const throw(){//因为继承关系，必须接上throw()
         return message_.c_str();
     }
     
