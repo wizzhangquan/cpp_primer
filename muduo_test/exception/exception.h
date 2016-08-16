@@ -2,10 +2,11 @@
 #define _MUDUO_TEST_EXCEPTION_H_
 
 #include <string>
+#include <exception>
 
 namespace muduo_test {
 
-class Exception {
+class Exception : public std::exception {
 public:
     explicit Exception(const char *what) : message_(what) {
         fillStackTrace();
@@ -14,7 +15,17 @@ public:
         fillStackTrace();
     }
 
-    const char *what() {
+    Exception(const Exception& that) : 
+        message_(that.message_), stack_(that.stack_) {
+    }
+
+    ~Exception() throw() { //这里的throw()是表示承诺不会抛出异常
+        //但在C++11中，是以noexcept来表示不会抛出异常的，
+        //新的标准中，throw()已经弃用
+
+    }
+
+    virtual const char *what() {
         return message_.c_str();
     }
     
