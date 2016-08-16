@@ -12,6 +12,11 @@ using std::string;
 using std::cout;
 using std::endl;
 
+//complier:
+//g++ -rdynamic
+//加上了-rdynamic才可以显示符号表中的函数名信息，
+//不然只能显示符合表中调用的地址
+
 void Exception::fillStackTrace() {
     const int kBuffsz = 100;
     void *buffer[kBuffsz];
@@ -25,8 +30,12 @@ void Exception::fillStackTrace() {
     symbolsTrace = backtrace_symbols(buffer, bufsz);
     
     for (int i = 0; i!=bufsz; ++i) {
-        stack_ += symbolsTrace[i];
-        stack_ += "\n";
+        //stack_ += symbolsTrace[i];
+        //stack_ += "\n";
+        //string.append(string) : append to string
+        //string.push_back(char) : append character to string
+        stack_.append(symbolsTrace[i]);
+        stack_.push_back('\n');
     }
     free(symbolsTrace);
 }
