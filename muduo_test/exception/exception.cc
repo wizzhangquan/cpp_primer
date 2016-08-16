@@ -26,7 +26,7 @@ void Exception::fillStackTrace() {
     
     for (int i = 0; i!=bufsz; ++i) {
         stack_ += symbolsTrace[i];
-        stack_ += "/n";
+        stack_ += "\n";
     }
     free(symbolsTrace);
 }
@@ -42,14 +42,22 @@ void bar(void) {
     }catch(const std::runtime_error &r_err) {
         cout << __func__ << "catch :"
              << r_err.what() << endl;
-    }catch(const Exception &Excp) {
+        throw;
+    }catch(const muduo_test::Exception &Excp) {
         cout << __func__ << " catch: " 
-             <<Excp.what() << endl;
+             << Excp.what() << endl;
         cout << "And stacktrace: " << endl
-             << Excp.stackTrace() << end;
+             << Excp.stackTrace() << endl;
+        throw;
     }
 }
 
 int main() {
+    try{
+        bar();
+    }catch(const std::exception &ep) {
+        cout << __func__ << " catch :"
+             << ep.what() << endl;
+    }
     return 0;
 }

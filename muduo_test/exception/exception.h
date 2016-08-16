@@ -25,11 +25,11 @@ public:
 
     }
 
-    virtual const char *what() {
+    const char *what() const throw(){
         return message_.c_str();
     }
     
-    const char *stackTrace() {
+    const char *stackTrace() const throw(){
         return stack_.c_str();
     }
 private:
