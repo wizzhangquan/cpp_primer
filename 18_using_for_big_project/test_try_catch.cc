@@ -4,7 +4,7 @@
 using namespace std;
 
 void foo(void) {
-    cout << __func__ << "begin" << endl;
+    cout << __func__ << " begin" << endl;
     throw out_of_range("foo out_of_range");
     cout << __func__ << "end" << endl;
 }
@@ -12,9 +12,13 @@ void foo(void) {
 void bar(void) {
     try{
         foo();
-    }catch(...) {
-        cout << __func__ << " catch ..."
-             << endl;
+    }catch(const exception &ep) {
+        //what() 为 virtual函数
+        //所以使用引用/指针可以多态
+        //ep如果是非引用/非指针的话
+        //就不能打印出之前传入的what信息
+        cout << __func__ << " catch exception: "
+             << ep.what() << endl;
         throw;
     }
 }
@@ -35,7 +39,7 @@ int main() {
         //main函数中不能再catch中使用throw了
         //如果没有双层try那将不会被捕获到
         //同时出现段错误
-    }catch(const exception &ep) {
+    }catch(const exception ep) {
         cout << "exception error: "
              << ep.what() << endl;
     }
