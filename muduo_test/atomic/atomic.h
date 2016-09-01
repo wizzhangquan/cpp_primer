@@ -56,8 +56,11 @@ public:
 private:
     volatile Type numeric_; 
 };
-}
+}//detail
 
-}
+typedef detail::Atomic<int32_t> AtomicInt32;
+typedef detail::Atomic<int64_t> AtomicInt64;
+
+}//muduo_test
 
 #endif
